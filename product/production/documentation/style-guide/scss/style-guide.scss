@@ -1,0 +1,792 @@
+/*!
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "variables";
+@import "mixins";
+/*@import "buttons";*/
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: $grey-darkest;
+  overflow: auto;
+  overflow-x: hidden;
+  background-color: $pure-white;
+  font-size: 14px;
+}
+.menu-hamburger {
+  display: block;
+  position: fixed;
+  overflow: hidden;
+  left: 10px;
+  top: 10px;
+  z-index: 10000;
+  margin: 0;
+  padding: 0;
+  width: 36px;
+  height: 35px;
+  font-size: 0;
+  text-indent: -9999px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.menu-hamburger span {
+  display: block;
+  position: absolute;
+  top: 14px;
+  left: 0px;
+  right: 0px;
+  height: 3px;
+  background: $pure-black;
+}
+.menu-hamburger span::before,
+.menu-hamburger span::after {
+  position: absolute;
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: $pure-black;
+  content: "";
+}
+.menu-hamburger span::before {
+  top: -10px;
+}
+.menu-hamburger span::after {
+  bottom: -10px;
+}
+.menu-hamburger--htx span {
+  transition: background 0s 0.3s;
+}
+.menu-hamburger--htx span::before,
+.menu-hamburger--htx span::after {
+  transition-duration: 0.3s, 0.3s;
+  transition-delay: 0.3s, 0s;
+}
+.menu-hamburger--htx span::before {
+  transition-property: top, transform;
+}
+.menu-hamburger--htx span::after {
+  transition-property: bottom, transform;
+}
+.menu-hamburger--htx.is-active span {
+  background: none;
+}
+.menu-hamburger--htx.is-active {
+  transform: translate(191px, 5px);
+  transition: .4s ease-in-out;
+}
+.menu-hamburger--htx.is-active span::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+.menu-hamburger--htx.is-active span::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+.menu-hamburger--htx.is-active span::before,
+.menu-hamburger--htx.is-active span::after {
+  transition-delay: 0s, 0.3s;
+  background-color: $pure-white;
+}
+/* Toggle Styles */
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  a#menu-toggle {
+    .fa-bars {
+      font-size: 25px;
+    }
+  }
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    top: 0;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: $pure-black;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+.radio-inline {
+  .radio-inline {
+    margin-left: 7px;
+  }
+}
+/* Sidebar Styles */
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: $grey-dark;
+}
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: $pure-white;
+    background: rgba(255,255,255,0.2);
+}
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+.sidebar-nav > .sidebar-brand {
+    height: 50px;
+    font-size: 18px;
+    line-height: 60px;
+}
+.sidebar-nav > .sidebar-brand a {
+    color: $grey-dark;
+}
+.sidebar-nav > .sidebar-brand a:hover {
+    color: $pure-white;
+    background: none;
+}
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+h4 {
+  margin: 30px 0;
+  font-weight: bold;
+}
+.page-header {
+    padding-bottom: 9px;
+    padding: 0 0 20px 0;
+    border-bottom: none;
+    h1 {
+      display: inline-block;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    a {
+      float: right;
+      margin-top: 35px;
+    }
+}
+.letter-examples {
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+.typography {
+  h2 {
+    &.patient-info {
+      color: $grey-darkest;
+      font-family: 'merriweather', serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    &.patient-name {
+      color: $pure-white;
+      background-color: $primary;
+      padding: 10px;
+    }
+    &.modal-title {
+      font-size: 13px;
+      color: $pure-black;
+      font-weight: 700;
+    }
+  }
+  h5 {
+    color: $primary-dark;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+aside.tray-container .tray-menu>li.open .tray-close-icon {
+  top: 1px;
+  left: -1px;
+}
+
+//
+// Colors
+// --------------------------------------------------
+
+.color-box {
+  background-color: $pure-white;
+  border-radius: 4px;
+  box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.20);
+  color: $grey-darkest;
+  height: 200px;
+  width: 100%;
+  text-align: center;
+  float: left;
+  margin: 0 3% 3% 0;
+  .color {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 4px 4px 0 0;
+    height: 70%;
+    margin-bottom: 5%;
+    padding: 0 5px;
+  }
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
+  h3 {
+    margin: 0 0 5px 0;
+  }
+}
+
+//
+// Badges
+.navbar.navbar-default.badge {
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background-image: none;
+  padding-left: 0;
+  .container-fluid {
+    padding: 0;
+    margin: 0;
+    ul.nav.navbar-nav {
+      li {
+        button {
+          padding-left: 0;
+        }
+        &.alert-dropdown {
+          .badge {
+            left: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+// --------------------------------------------------
+
+.label {
+  &.applet-badges {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 400;
+    margin: 1px 0;
+    padding: 3px 6px;
+    &.label-critical {
+    background-color: $red;
+    }
+    &.label-abnormal {
+    background-color: $tertiary;
+    color: $grey-darkest;
+    }
+    &.label-panel {
+    background-color: $grey-darker;
+    }
+  }
+}
+//
+// Modals
+.modal-xl {
+  width: calc(100vw - 191px);
+}
+// --------------------------------------------------
+
+// Common styles
+
+
+// Common styles
+.no-margin {
+  margin: 0!important;
+}
+.text-left {
+  text-align: left!important;
+  margin-left: 2px;
+}
+.icons-library {
+  font-size: 18px;
+  ul {
+    padding-left: 0;
+    line-height: 2;
+    li {
+      list-style: none;
+    }
+  }
+  .fa {
+    display: inline-block;
+    font-size: 18px;
+    margin-right: 10px;
+    text-align: right;
+    width: 32px;
+  }
+  .fa-user + .fa-search {
+      margin-left: -34px;
+      font-size: 10px;
+      top: -6px;
+      position: relative;
+    }
+    .fa-user + .fa-user {
+      margin-left: -37px;
+      font-size: 10px;
+      top: -6px;
+      position: relative;
+    }
+    .fa-user + .fa-user + .fa-pencil {
+      margin-left: -33px;
+      font-size: 14px;
+    }
+    .fa-users + .fa-pencil {
+      margin-left: -31px;
+      font-size: 14px;
+    }
+    .fa-ellipsis-v + .fa-pencil {
+      margin-left: -27px;
+      position: relative;
+      top: -2px;
+      font-size: 15px;
+    }
+}
+
+.style-guide {
+  .pop-over {
+    width: 400px;
+    height: 300px;
+    background: $primary-lightest;
+    box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.20);
+    position: relative;
+  }
+}
+
+.action-footer {
+  width: auto;
+  height: 45px;
+  background: $pure-white;
+  border-top: 1px solid $grey-lighter;
+  padding: 8px 0 8px 8px;
+  position: absolute;
+  bottom: 0;
+  &.container {
+    width: 400px;
+    float: left;
+  }
+  .btn {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .btn-primary {
+    background-color: $pure-white;
+    color: $primary;
+    &:hover {
+      background-color: $primary-light;
+      color: $primary-dark;
+    }
+  }
+  .btn-default {
+    color: $grey-darker;
+    background-color: $pure-white;
+    &:hover {
+      background-color: $primary-light;
+      color: $grey-darkest;
+    }
+  }
+  .btn-danger {
+      background-color: $pure-white;
+      color: $red;
+      &:hover {
+        background-color: $red-lightest;
+        color: $red-dark;
+      }
+  }
+}
+
+.source-sans {
+  font-family: 'Source Sans Pro', sans-serif;
+  &.lg {
+    font-size: 18px;
+  }
+  .regular {
+    font-weight: 400;
+  }
+  .semi-bold {
+    font-weight: 600;
+  }
+  .bold {
+    font-weight: 700;
+  }
+}
+.merriweather {
+  font-family: 'Merriweather', serif;
+  &.lg {
+    font-size: 18px;
+  }
+  .regular {
+    font-weight: 400;
+  }
+  .semi-bold {
+    font-weight: 600;
+  }
+  .bold {
+    font-weight: 700;
+  }
+}
+.form-control {
+  border-color: $grey-light;
+}
+.grid-filter {
+  position: relative;
+  .backgrid-filter .fa.fa-filter {
+    left: 6px;
+    position: absolute;
+    top: 6px;
+    z-index: 1;
+    font-size: 11px;
+}
+
+  } 
+legend {
+  border-bottom: none;
+}
+.select2-container--always-open.select2-container--open:last-of-type {
+    display: block;
+    clear: both;
+    left: auto !important;
+    height: 100%;
+    position: relative !important;
+    top: auto !important;
+    z-index: 0;
+}
+.select2-container--always-open .select2-results {
+    height: calc(100% - 35px);
+}
+.select2-results {
+    display: block;
+}
+.select2-container--always-open .select2-results>.select2-results__options {
+    height: 100%;
+    overflow-y: auto;
+}
+.select2-results__options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.select2-container--always-open .select2-results__option[role=group] {
+    padding: 0;
+}
+.select2-results__option {
+    padding: 6px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+//
+// Images
+// --------------------------------------------------
+
+.thumbnail,
+.img-thumbnail {
+  @include box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+.img-percent-100 {
+  max-width: 100%;
+}
+
+
+//
+// Dropdowns
+// --------------------------------------------------
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  @include gradient-vertical($start-color: $dropdown-link-hover-bg, $end-color: darken($dropdown-link-hover-bg, 5%));
+  background-color: darken($dropdown-link-hover-bg, 5%);
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  @include gradient-vertical($start-color: $dropdown-link-active-bg, $end-color: darken($dropdown-link-active-bg, 5%));
+  background-color: darken($dropdown-link-active-bg, 5%);
+}
+
+
+//
+// Navbar
+// --------------------------------------------------
+
+// Default navbar
+.navbar {
+  padding-top: 11px;
+}
+.navbar-default {
+  @include gradient-vertical($start-color: lighten($navbar-default-bg, 10%), $end-color: $navbar-default-bg);
+  @include reset-filter; // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
+  border-radius: $navbar-border-radius;
+  $shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 5px rgba(0,0,0,.075);
+  @include box-shadow($shadow);
+
+  .navbar-nav > .open > a,
+  .navbar-nav > .active > a {
+    @include gradient-vertical($start-color: darken($navbar-default-link-active-bg, 5%), $end-color: darken($navbar-default-link-active-bg, 2%));
+    @include box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
+  }
+}
+
+.navbar-brand,
+.navbar-nav > li > a {
+  font-size: 14px;
+}
+
+// Inverted navbar
+.navbar-inverse {
+  background: $primary-light;
+  box-shadow: inset 0px -2px 4px 0px rgba(0,0,0,0.09);
+  border: none;
+  .navbar-nav > .open > a,
+  .navbar-nav > .active > a {
+    background-color: $primary-dark;
+    background-image: none;
+    color: $pure-white;
+  }
+  .navbar-brand {
+    color: #323A45;
+    text-shadow: none;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+    &:hover,
+    &:focus {
+      color: $primary-dark;
+    }
+  }
+  .navbar-nav li:first-child a {
+    padding-left: 0;
+  }
+  .navbar-nav > li > a {
+    text-shadow: none;
+    color: $primary;
+    font-family: 'Merriweather', serif;
+    &:hover,
+    &:focus {
+      color: $primary-dark;
+    }
+  }
+}
+
+// Undo rounded corners in static and fixed navbars
+.navbar-static-top,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  border-radius: 0;
+}
+
+// Fix active state of dropdown items in collapsed mode
+@media (max-width: $grid-float-breakpoint-max) {
+  .navbar .navbar-nav .open .dropdown-menu > .active > a {
+    &,
+    &:hover,
+    &:focus {
+      color: $pure-white;
+      @include gradient-vertical($start-color: $dropdown-link-active-bg, $end-color: darken($dropdown-link-active-bg, 5%));
+    }
+  }
+}
+
+.jumbotron {
+  background: $primary-lightest;
+  color: $grey-darkest;
+  position: relative;
+  width: 100%;
+  display: block;
+  padding: 20px;
+  // &::after {
+  //   content: "";
+  //   background: url("../../../_assets/img/login-bg-3.jpg");
+  //   background-position: 50% 50%;
+  //   opacity: .5;
+  //   top: 0;
+  //   left: 0;
+  //   bottom: 0;
+  //   right: 0;
+  //   position: absolute;
+  //   z-index: -1;
+  // }
+}
+
+//
+// Alerts
+// --------------------------------------------------
+
+// Common styles
+.alert {
+  text-shadow: 0 1px 0 rgba(255,255,255,.2);
+  $shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05);
+  @include box-shadow($shadow);
+}
+
+// Mixin for generating new styles
+@mixin alert-styles($color) {
+  @include gradient-vertical($start-color: $color, $end-color: darken($color, 7.5%));
+  border-color: darken($color, 15%);
+}
+
+// Apply the mixin to the alerts
+.alert-success    { @include alert-styles($alert-success-bg); }
+.alert-info       { @include alert-styles($alert-info-bg); }
+.alert-warning    { @include alert-styles($alert-warning-bg); }
+.alert-danger     { @include alert-styles($alert-danger-bg); }
+
+
+//
+// Progress bars
+// --------------------------------------------------
+
+// Give the progress background some depth
+.progress {
+  @include gradient-vertical($start-color: darken($progress-bg, 4%), $end-color: $progress-bg)
+}
+
+// Mixin for generating new styles
+@mixin progress-bar-styles($color) {
+  @include gradient-vertical($start-color: $color, $end-color: darken($color, 10%));
+}
+
+// Apply the mixin to the progress bars
+.progress-bar            { @include progress-bar-styles($progress-bar-bg); }
+.progress-bar-success    { @include progress-bar-styles($progress-bar-success-bg); }
+.progress-bar-info       { @include progress-bar-styles($progress-bar-info-bg); }
+.progress-bar-warning    { @include progress-bar-styles($progress-bar-warning-bg); }
+.progress-bar-danger     { @include progress-bar-styles($progress-bar-danger-bg); }
+
+// Reset the striped class because our mixins don't do multiple gradients and
+// the above custom styles override the new `.progress-bar-striped` in v3.2.0.
+.progress-bar-striped {
+  @include gradient-striped;
+}
+
+
+//
+// List groups
+// --------------------------------------------------
+
+.list-group {
+  border-radius: $border-radius-base;
+  @include box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  text-shadow: 0 -1px 0 darken($list-group-active-bg, 10%);
+  @include gradient-vertical($start-color: $list-group-active-bg, $end-color: darken($list-group-active-bg, 7.5%));
+  border-color: darken($list-group-active-border, 7.5%);
+
+  .badge {
+    text-shadow: none;
+  }
+}
+
+
+//
+// Panels
+// --------------------------------------------------
+
+// Common styles
+.panel {
+  @include box-shadow(0 1px 2px rgba(0,0,0,.05));
+}
+
+// Mixin for generating new styles
+@mixin panel-heading-styles($color) {
+  @include gradient-vertical($start-color: $color, $end-color: darken($color, 5%));
+}
+
+// Apply the mixin to the panel headings only
+.panel-default > .panel-heading   { @include panel-heading-styles($panel-default-heading-bg); }
+.panel-primary > .panel-heading   { @include panel-heading-styles($panel-primary-heading-bg); }
+.panel-success > .panel-heading   { @include panel-heading-styles($panel-success-heading-bg); }
+.panel-info > .panel-heading      { @include panel-heading-styles($panel-info-heading-bg); }
+.panel-warning > .panel-heading   { @include panel-heading-styles($panel-warning-heading-bg); }
+.panel-danger > .panel-heading    { @include panel-heading-styles($panel-danger-heading-bg); }
+
+
+//
+// Wells
+// --------------------------------------------------
+
+.well {
+  @include gradient-vertical($start-color: darken($well-bg, 5%), $end-color: $well-bg);
+  border-color: darken($well-bg, 10%);
+  $shadow: inset 0 1px 3px rgba(0,0,0,.05), 0 1px 0 rgba(255,255,255,.1);
+  @include box-shadow($shadow);
+}
+@media (min-width: 1200px) {
+.container {
+    width: 970px;
+}
+}
+@media (max-width: 1215px) {
+.container {
+    width: 745px;
+}
+}
+@media (max-width: 985px) {
+.container {
+    width: 600px;
+}
+}
